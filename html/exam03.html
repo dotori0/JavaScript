@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        #div1, #div2, #div3{
+            display: inline-block;
+            background-color: bisque;
+            border: 1px solid burlywood;
+            margin: 50px;
+            padding: 5px;
+            color: rgb(160, 118, 63);
+            font-size: 3em;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">Click Div 1</div>
+    <div id="div2">Click Div 2</div>
+    <div id="div3">Click Div 3</div>
+    <script>
+        var length = 4
+        
+        for(var i = 1; i < length; i++) {
+            document.getElementById('div' + i).addEventListener('click', (function(index) {
+                console.log('add click callback for div #' + index)
+
+                return function() {
+                    console.log('Clicked Div #' + index)
+                }
+            }(i)), false)
+        }
+
+        function setDivClick(index) {
+            document.getElementById('div' + index).addEventListener('click', function() {
+                console.log('Clicked div #' + index)
+            })
+        }
+    </script>
+</body>
+</html>
