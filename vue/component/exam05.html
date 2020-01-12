@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue JS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div id="app">
+            <div id="row">
+                <shoes v-for="shoes in brands" :shoes='shoes'></shoes>
+            </div>
+        </div>
+    </div>
+
+    <template id="shoes-template">
+        <div class="col-lg-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>{{ shoes.productName }}</h3>
+                    <p>수량 : {{ shoes.quantity }}</p>
+                    <p>
+                        <button class="btn btn-primary" @click="buy" :disabled="!available">Buy</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('shoes', {
+            template : '#shoes-template',
+            props : ['shoes'],
+            methods : {
+                buy : function() {
+                    this.shoes.quantity -= 1
+                }
+            },
+            computed : {
+                available : function() {
+                    return this.shoes.quantity > 0
+                }
+            }
+        })
+
+        new Vue({
+            el : '#app',
+            data : {
+                brands : [
+                    {
+                        productName : '나이키',
+                        quantity : 15
+                    },
+                    {
+                        productName : '아디다스',
+                        quantity : 10
+                    },
+                    {
+                        productName : '발렌시아가',
+                        quantity : 20
+                    },
+                    {
+                        productName : '필라',
+                        quantity : 10
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

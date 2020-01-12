@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue JS</title>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container text-center">
+        <h1>클래스 바인딩 - 객체 문법</h1>
+        <div class="box" v-bind:class="{'red' : color, 'blue':!color}"></div>
+        <div class="box" v-bind:class="{'purple' : color, 'green':!color}"></div>
+        <div class="box" v-bind:class="{'red' : color, 'blue':!color}"></div>
+        <div class="box" v-bind:class="{'purple' : color, 'green':!color}"></div>
+        <h1>클래스 바인딩 - 배열 문법</h1>
+        <div class="box" v-bind:class="[color ? 'purple' : 'green']"></div>
+        <div class="box" v-bind:class="[color ? 'red' : 'blue']"></div>
+        <div class="box" v-bind:class="[color ? 'purple' : 'green']"></div>
+        <div class="box" v-bind:class="[color ? 'red' : 'blue']"></div>
+
+        <button v-on:click="flipColor" class="btn btn-block btn-success">Flip</button>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        new Vue({ 
+            el : '.container',
+            data : {
+                color : true
+            },
+            methods : {
+                flipColor : function() {
+                    console.log('color : ' + this.color)
+                    this.color = !this.color
+                }
+            }
+        })
+    </script>
+    <style>
+        .box {
+            float: left;
+            width: 200px;
+            height: 200px;
+            margin: 400px;
+            margin: 40px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        .red { background-color: red; }
+        .blue { background-color: blue; }
+        .purple { background-color: purple; }
+        .green { background-color: green; }
+    </style>
+</body>
+</html>

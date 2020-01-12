@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue JS</title>
+</head>
+<body>
+    <div id="app" class="container">
+        <board v-bind:my-board = "{ title : 'v-bind 사용', writer : 'AAA' }"></board>
+        <board :my-board = "{ title : '축약형 사용', writer : 'BBB' }"></board>
+    </div>
+
+    <template id="board-template">
+        <h1>{{ myBoard.title }} : {{ myBoard.writer }}</h1>
+    </template>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('board', {
+            props : ['myBoard'],
+            template : '#board-template'
+        })
+
+        new Vue({
+            el : '#app'
+        })
+    </script>
+</body>
+</html>
