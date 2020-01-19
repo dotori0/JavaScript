@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue JS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!--
+        부모 자식 간 통신
+        HTML 엘리먼트 또는 Vue의 컴포넌트가 중첩된 형태
+    -->
+    <!-- 부모 컴포넌트 템플릿 -->
+    <div id="app" class="container text-center">
+        <p style="font-size: 120px;">
+            {{ votes }}
+            <food @voted="countVote" name="떡볶이"></food>
+            <pre style="text-align: left;">{{ $data }}</pre>
+        </p>
+    </div>
+
+    <!-- food 컴포넌트 템플릿 -->
+    <template id="food">
+        <button class="btn btn-default" @click="doVote">{{ name }}</button>
+    </template>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        // 자식 컴포넌트
+        Vue.component('food', {
+            template : '#food',
+            props : ['name'],
+            methods : {
+                doVote : function(event) {
+                    this.$emit('voted');
+                }
+            }
+        })
+
+        // 부모 컴포넌트
+        new Vue({
+            el : '#app',
+            data : {
+                votes : 0
+            },
+            methods : {
+                countVote : function(food) {Q
+                    this.votes += 1;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
