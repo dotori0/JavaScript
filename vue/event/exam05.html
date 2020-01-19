@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue JS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!--
+        [키보드 이벤트]
+        
+    -->
+    <div id="app" class="container">
+        <h1>Key Event Calculator</h1>
+        <form action="" class="form-inline" @submit.prevent="calculate">
+            <input type="text" v-model.number="a" class="form-control" @keyup.enter="calculate">
+            <select name="" id="" v-model="operator" class="form-control">
+                <option>+</option>
+                <option>-</option>
+                <option>*</option>
+                <option>/</option>
+            </select>
+            <input type="text" v-model.number="b" class="form-control" @keyup.enter="calculate">
+        </form>
+        <h2>Result : {{ a }} {{ operator }} {{ b }} = {{ c }}</h2>
+        <pre>{{ $data }}</pre>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+
+        new Vue({
+            el : '#app',
+            data : {
+                a : null,
+                b : null,
+                c : null,
+                operator : '+'
+            },
+            methods : {
+                calculate : function() {
+                    // event.preventDefault()
+
+                    switch(this.operator) {
+                        case '+' : this.c = this.a + this.b; break
+                        case '-' : this.c = this.a - this.b; break
+                        case '*' : this.c = this.a * this.b; break
+                        case '/' : this.c = this.a / this.b; break
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

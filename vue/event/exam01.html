@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue JS</title>
+</head>
+<body>
+    <!--
+        v-on을 활용한 이벤트 처리 ( jQuery -> Vue )
+    -->
+    <div id="app" class="container">
+        <!-- 버튼 클릭시 update 변수의 값을 하나씩 증가 -->
+        <button v-on:click="update++">Update Count : {{ update }}</button><br>
+        <button @click="upCount">축약형 Update Count : {{ update }}</button>
+        <pre>{{ $data }}</pre>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el : '#app',
+            data : {
+                update : 0
+            },
+            methods : {
+                upCount : function() {
+                    this.update++
+                }
+            }
+        })
+    </script>
+</body>
+</html>
